@@ -57,6 +57,8 @@ public class Administrar_personas {
 
             for (Persona t : Lista_Personas) {
                 bw.write(t.getNombre() + ";");
+                bw.write(t.getMonto()+ ";");
+                bw.write(t.getMeses()+ ";");
             }
             bw.flush();
         } catch (Exception e) {
