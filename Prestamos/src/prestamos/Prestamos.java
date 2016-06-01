@@ -23,7 +23,12 @@ public class Prestamos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         ap.CargarArchivo();
-
+        
+        for (int i = 0; i < ap.getLista_Personas().size(); i++) {
+            Personas.add(ap.getLista_Personas().get(i));
+            cb_Clientes.addItem(ap.getLista_Personas().get(i));
+        }
+        
         if (!Personas.isEmpty()) {
             for (int i = 0; i < Personas.size(); i++) {
                 int pagos = ((Persona)Personas.get(i)).getMeses();
@@ -33,6 +38,7 @@ public class Prestamos extends javax.swing.JFrame {
                 }
             }
         }
+        
         //t_MesMonto.addMouseListener(new TableMouseListener(t_MesMonto));
     }
 
@@ -121,6 +127,11 @@ public class Prestamos extends javax.swing.JFrame {
         jd_Reportes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jd_ReportesMouseMoved(evt);
+            }
+        });
+        jd_Reportes.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                jd_ReportesWindowOpened(evt);
             }
         });
 
@@ -326,21 +337,52 @@ public class Prestamos extends javax.swing.JFrame {
         // TODO add your handling code here:
         int PagoEfectuado = 0;
         int MontoAnterior = 0;
-
+        int Meses = 0;
+        
         int Fila = t_MesMonto.getSelectedRow();
         String PagoTemp = JOptionPane.showInputDialog("Cantidad a pagar: ");
 
         PagoEfectuado = Integer.parseInt(PagoTemp);
         MontoAnterior = ((Persona) cb_Clientes.getSelectedItem()).getPagos().get(Fila);
+        Meses = ((Persona) cb_Clientes.getSelectedItem()).getMeses();
 
         if (MontoAnterior == PagoEfectuado) {
-            ((Persona) cb_Clientes.getSelectedItem()).getPagos().remove(Fila);
+            ((Persona)Personas.get(cb_Clientes.getSelectedIndex())).getPagos().remove(Fila);
+            ((Persona)Personas.get(cb_Clientes.getSelectedIndex())).setMeses(Meses - 1);
         } else if (PagoEfectuado > MontoAnterior) {
             JOptionPane.showMessageDialog(this, "El pago excede el monto",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             ((Persona) cb_Clientes.getSelectedItem()).getPagos().set(Fila, MontoAnterior - PagoEfectuado);
         }
+        
+        //ACTUALIZAR TABLA
+        DefaultTableModel ModeloTabla = (DefaultTableModel) t_MesMonto.getModel();
+        int Filas = ModeloTabla.getRowCount();
+        for (int i = 1; i <= Filas; i++) {
+            ModeloTabla.removeRow(0);
+        }
+
+        Persona temp = (Persona) cb_Clientes.getSelectedItem();
+
+        if (!Personas.isEmpty()) {
+            for (int i = 0; i < temp.getPagos().size(); i++) {
+                ModeloTabla.addRow(new Object[]{i + 1, temp.getPagos().get(i)});
+            }
+        }
+
+        for (int i = 0; i < Personas.size(); i++) {
+            if ((((Persona) Personas.get(i)).getPagos().isEmpty())) {
+                Personas.remove(i);
+                cb_Clientes.removeAllItems();
+                for (int j = 0; j < Personas.size() - 1; j++) {
+                    cb_Clientes.addItem(Personas.get(j));
+                }
+            }
+        }
+        
+        t_MesMonto.setModel(ModeloTabla);
+        ModeloTabla.fireTableDataChanged();
     }//GEN-LAST:event_PagarActionPerformed
 
     private void jd_ReportesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jd_ReportesMouseMoved
@@ -368,13 +410,72 @@ public class Prestamos extends javax.swing.JFrame {
                 }
             }
         }
-
+        
+        t_MesMonto.setModel(ModeloTabla);
+        ModeloTabla.fireTableDataChanged();
+        
         ap.EscribirArchivo();
     }//GEN-LAST:event_jd_ReportesMouseMoved
 
     private void t_MesMontoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_MesMontoMouseMoved
         // TODO add your handling code here:
+        DefaultTableModel ModeloTabla = (DefaultTableModel) t_MesMonto.getModel();
+        int Filas = ModeloTabla.getRowCount();
+        for (int i = 1; i <= Filas; i++) {
+            ModeloTabla.removeRow(0);
+        }
+
+        Persona temp = (Persona) cb_Clientes.getSelectedItem();
+
+        if (!Personas.isEmpty()) {
+            for (int i = 0; i < temp.getPagos().size(); i++) {
+                ModeloTabla.addRow(new Object[]{i + 1, temp.getPagos().get(i)});
+            }
+        }
+
+        for (int i = 0; i < Personas.size(); i++) {
+            if ((((Persona) Personas.get(i)).getPagos().isEmpty())) {
+                Personas.remove(i);
+                cb_Clientes.removeAllItems();
+                for (int j = 0; j < Personas.size() - 1; j++) {
+                    cb_Clientes.addItem(Personas.get(j));
+                }
+            }
+        }
+        
+        t_MesMonto.setModel(ModeloTabla);
+        ModeloTabla.fireTableDataChanged();
     }//GEN-LAST:event_t_MesMontoMouseMoved
+
+    private void jd_ReportesWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_ReportesWindowOpened
+        // TODO add your handling code here:
+        DefaultTableModel ModeloTabla = (DefaultTableModel) t_MesMonto.getModel();
+        int Filas = ModeloTabla.getRowCount();
+        for (int i = 1; i <= Filas; i++) {
+            ModeloTabla.removeRow(0);
+        }
+
+        Persona temp = (Persona) cb_Clientes.getSelectedItem();
+
+        if (!Personas.isEmpty()) {
+            for (int i = 0; i < temp.getPagos().size(); i++) {
+                ModeloTabla.addRow(new Object[]{i + 1, temp.getPagos().get(i)});
+            }
+        }
+
+        for (int i = 0; i < Personas.size(); i++) {
+            if ((((Persona) Personas.get(i)).getPagos().isEmpty())) {
+                Personas.remove(i);
+                cb_Clientes.removeAllItems();
+                for (int j = 0; j < Personas.size() - 1; j++) {
+                    cb_Clientes.addItem(Personas.get(j));
+                }
+            }
+        }
+        
+        t_MesMonto.setModel(ModeloTabla);
+        ModeloTabla.fireTableDataChanged();
+    }//GEN-LAST:event_jd_ReportesWindowOpened
 
     /**
      * @param args the command line arguments
@@ -430,6 +531,6 @@ public class Prestamos extends javax.swing.JFrame {
     private javax.swing.JPopupMenu ppm_modificar;
     private javax.swing.JTable t_MesMonto;
     // End of variables declaration//GEN-END:variables
-ArrayList Personas = new ArrayList();
+    ArrayList Personas = new ArrayList();
     Administrar_personas ap = new Administrar_personas("./Clientes.txt");
 }
