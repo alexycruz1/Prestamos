@@ -6,6 +6,7 @@
 package prestamos;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -13,55 +14,11 @@ import java.util.ArrayList;
  */
 public class Persona {
     String Nombre;
-    int Monto;
+    double Monto;
     int Meses;
-    ArrayList <Integer> Pagos= new ArrayList();
-
-    public Persona() {
-    }
-
-    public Persona(String Nombre, int Monto, int Meses) {
-        this.Nombre = Nombre;
-        this.Monto = Monto;
-        this.Meses = Meses;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
-    public int getMonto() {
-        return Monto;
-    }
-
-    public void setMonto(int Monto) {
-        this.Monto = Monto;
-    }
-
-    public int getMeses() {
-        return Meses;
-    }
-
-    public void setMeses(int Meses) {
-        this.Meses = Meses;
-    }
-
-    public ArrayList<Integer> getPagos() {
-        return Pagos;
-    }
-
-    public void setPagos(ArrayList<Integer> Pagos) {
-        this.Pagos = Pagos;
-    }
-
-    @Override
-    public String toString() {
-        return Nombre;
-    }
+    double Interes;
+    Date FechaInicio;
+    ArrayList <Double> Cuotas= new ArrayList();
 
     
 }

@@ -5,11 +5,6 @@
  */
 package prestamos;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-
 /**
  *
  * @author Alexy jr
@@ -22,24 +17,6 @@ public class Prestamos extends javax.swing.JFrame {
     public Prestamos() {
         initComponents();
         setLocationRelativeTo(this);
-        ap.CargarArchivo();
-        
-        for (int i = 0; i < ap.getLista_Personas().size(); i++) {
-            Personas.add(ap.getLista_Personas().get(i));
-            cb_Clientes.addItem(ap.getLista_Personas().get(i));
-        }
-        
-        if (!Personas.isEmpty()) {
-            for (int i = 0; i < Personas.size(); i++) {
-                int pagos = ((Persona)Personas.get(i)).getMeses();
-                int Monto = ((Persona)Personas.get(i)).getMonto();
-                for (int j = 0; j < pagos; j++) {
-                    ((Persona)Personas.get(i)).getPagos().add(Monto);
-                }
-            }
-        }
-        
-        //t_MesMonto.addMouseListener(new TableMouseListener(t_MesMonto));
     }
 
     /**
@@ -51,111 +28,45 @@ public class Prestamos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jd_AgregarPersonas = new javax.swing.JDialog();
+        jd_Reportes = new javax.swing.JDialog();
+        jDesktopPane2 = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        AgregarMeses = new javax.swing.JSpinner();
-        AgregarNombre = new javax.swing.JTextField();
-        AgregarMonto = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jd_Reportes = new javax.swing.JDialog();
+        jd_Prestamos = new javax.swing.JDialog();
+        jDesktopPane3 = new javax.swing.JDesktopPane();
         jLabel4 = new javax.swing.JLabel();
-        cb_Clientes = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        t_MesMonto = new javax.swing.JTable();
-        ppm_modificar = new javax.swing.JPopupMenu();
-        Pagar = new javax.swing.JMenuItem();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jd_fecha_inicio = new com.toedter.calendar.JDateChooser();
+        tf_nombre_completo = new javax.swing.JTextField();
+        tf_monto = new javax.swing.JTextField();
+        tf_interes = new javax.swing.JTextField();
+        tf_meses = new javax.swing.JSpinner();
+        buttonTask3 = new org.edisoncor.gui.button.ButtonTask();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        buttonTask1 = new org.edisoncor.gui.button.ButtonTask();
+        buttonTask2 = new org.edisoncor.gui.button.ButtonTask();
 
-        jLabel1.setText("Nombre Completo");
+        jd_Reportes.setResizable(false);
 
-        jLabel2.setText("Monto del prestamo");
-
-        jLabel3.setText("Meses");
-
-        jButton3.setText("Agregar prestamo");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jd_AgregarPersonasLayout = new javax.swing.GroupLayout(jd_AgregarPersonas.getContentPane());
-        jd_AgregarPersonas.getContentPane().setLayout(jd_AgregarPersonasLayout);
-        jd_AgregarPersonasLayout.setHorizontalGroup(
-            jd_AgregarPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_AgregarPersonasLayout.createSequentialGroup()
-                .addGroup(jd_AgregarPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jd_AgregarPersonasLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jd_AgregarPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(25, 25, 25)
-                        .addGroup(jd_AgregarPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AgregarMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AgregarMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AgregarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jd_AgregarPersonasLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(64, Short.MAX_VALUE))
-        );
-        jd_AgregarPersonasLayout.setVerticalGroup(
-            jd_AgregarPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_AgregarPersonasLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jd_AgregarPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(AgregarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jd_AgregarPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(AgregarMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jd_AgregarPersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(AgregarMeses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
-
-        jd_Reportes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jd_ReportesMouseMoved(evt);
-            }
-        });
-        jd_Reportes.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                jd_ReportesWindowOpened(evt);
-            }
-        });
-
-        jLabel4.setText("Clientes");
-
-        cb_Clientes.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cb_ClientesItemStateChanged(evt);
-            }
-        });
-
-        t_MesMonto.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mes", "Monto"
+                "Fecha", "Capital", "Interes", "Pago a efectuar", "Pago efectuado", "Debito"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -166,316 +77,242 @@ public class Prestamos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        t_MesMonto.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                t_MesMontoMouseMoved(evt);
-            }
-        });
-        t_MesMonto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_MesMontoMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(t_MesMonto);
-        if (t_MesMonto.getColumnModel().getColumnCount() > 0) {
-            t_MesMonto.getColumnModel().getColumn(0).setResizable(false);
-            t_MesMonto.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
+
+        jLabel1.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
+        jLabel1.setText("Nombre");
+
+        jLabel2.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
+        jLabel2.setText("Monto del prestamo");
+
+        jLabel3.setFont(new java.awt.Font("Palatino Linotype", 0, 18)); // NOI18N
+        jLabel3.setText("Tiempo en meses");
+
+        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
+        jDesktopPane2.setLayout(jDesktopPane2Layout);
+        jDesktopPane2Layout.setHorizontalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
+            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jDesktopPane2Layout.setVerticalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jDesktopPane2.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jd_ReportesLayout = new javax.swing.GroupLayout(jd_Reportes.getContentPane());
         jd_Reportes.getContentPane().setLayout(jd_ReportesLayout);
         jd_ReportesLayout.setHorizontalGroup(
             jd_ReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_ReportesLayout.createSequentialGroup()
-                .addGroup(jd_ReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jd_ReportesLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jd_ReportesLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cb_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+            .addComponent(jDesktopPane2)
         );
         jd_ReportesLayout.setVerticalGroup(
             jd_ReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_ReportesLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jd_ReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cb_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+            .addComponent(jDesktopPane2)
         );
 
-        Pagar.setText("Pagar");
-        Pagar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PagarActionPerformed(evt);
-            }
-        });
-        ppm_modificar.add(Pagar);
+        jLabel4.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel4.setText("Nombre completo");
+
+        jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel5.setText("Interes");
+
+        jLabel6.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel6.setText("Meses");
+
+        jLabel7.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel7.setText("Monto");
+
+        jLabel8.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
+        jLabel8.setText("Fecha de inicio");
+
+        tf_meses.setName(""); // NOI18N
+
+        buttonTask3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prestamos/add-icon.png"))); // NOI18N
+        buttonTask3.setText("Crear prestamo");
+        buttonTask3.setDescription(".");
+
+        javax.swing.GroupLayout jDesktopPane3Layout = new javax.swing.GroupLayout(jDesktopPane3);
+        jDesktopPane3.setLayout(jDesktopPane3Layout);
+        jDesktopPane3Layout.setHorizontalGroup(
+            jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonTask3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jd_fecha_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_nombre_completo, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(tf_interes, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tf_monto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_meses, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(206, Short.MAX_VALUE))
+        );
+        jDesktopPane3Layout.setVerticalGroup(
+            jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tf_nombre_completo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(tf_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(tf_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_meses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(34, 34, 34)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jd_fecha_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(buttonTask3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+        jDesktopPane3.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jd_fecha_inicio, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(tf_nombre_completo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(tf_monto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(tf_interes, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(tf_meses, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(buttonTask3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jd_PrestamosLayout = new javax.swing.GroupLayout(jd_Prestamos.getContentPane());
+        jd_Prestamos.getContentPane().setLayout(jd_PrestamosLayout);
+        jd_PrestamosLayout.setHorizontalGroup(
+            jd_PrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_PrestamosLayout.createSequentialGroup()
+                .addComponent(jDesktopPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jd_PrestamosLayout.setVerticalGroup(
+            jd_PrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane3)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jButton1.setText("AGREGAR");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonTask1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prestamos/add-icon.png"))); // NOI18N
+        buttonTask1.setText("Prestamos");
+        buttonTask1.setDescription("Crea un nuevo prestamo");
+        buttonTask1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                buttonTask1MouseClicked(evt);
             }
         });
 
-        jButton2.setText("REPORTES");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonTask2.setText("Reportes");
+        buttonTask2.setDescription("Lista de prestamos");
+        buttonTask2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                buttonTask2MouseClicked(evt);
             }
         });
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonTask1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonTask2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(289, Short.MAX_VALUE))
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(buttonTask1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(buttonTask2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(277, Short.MAX_VALUE))
+        );
+        jDesktopPane1.setLayer(buttonTask1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(buttonTask2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(184, 184, 184)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(232, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void buttonTask2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonTask2MouseClicked
         // TODO add your handling code here:
-        jd_AgregarPersonas.setModal(true);
-        jd_AgregarPersonas.pack();
-        jd_AgregarPersonas.setLocationRelativeTo(this);
-        jd_AgregarPersonas.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+        if (!evt.isMetaDown()) {
+            jd_Reportes.setModal(true);
+            jd_Reportes.pack();
+            jd_Reportes.setLocationRelativeTo(this);
+            jd_Reportes.setVisible(true);
+        }
+    }//GEN-LAST:event_buttonTask2MouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void buttonTask1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonTask1MouseClicked
         // TODO add your handling code here:
-        String Nombre;
-        int Monto;
-        int TiempoAPagar;
-
-        Nombre = AgregarNombre.getText();
-        Monto = Integer.parseInt(AgregarMonto.getText());
-        TiempoAPagar = (int) AgregarMeses.getValue();
-
-        if (TiempoAPagar == 1) {
-            TiempoAPagar++;
+        if (!evt.isMetaDown()) {
+            jd_Prestamos.setModal(true);
+            jd_Prestamos.pack();
+            jd_Prestamos.setLocationRelativeTo(this);
+            jd_Prestamos.setVisible(true);
         }
-
-        Persona p = new Persona(Nombre, Monto, TiempoAPagar);
-        Personas.add(p);
-        cb_Clientes.addItem(p);
-        ap.setPersona(p);
-
-        for (int i = 0; i < TiempoAPagar; i++) {
-            ((Persona) (Personas.get(Personas.size() - 1))).getPagos().add(Monto);
-        }
-
-        AgregarNombre.setText("");
-        AgregarMonto.setText("");
-        AgregarMeses.setValue(0);
-
-        JOptionPane.showMessageDialog(this, "Has agregado a una persona",
-                "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
-
-        jd_AgregarPersonas.setVisible(false);
-    }//GEN-LAST:event_jButton3MouseClicked
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        jd_Reportes.setModal(true);
-        jd_Reportes.pack();
-        jd_Reportes.setLocationRelativeTo(this);
-        jd_Reportes.setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
-
-    private void cb_ClientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ClientesItemStateChanged
-        // TODO add your handling code here:
-        DefaultTableModel ModeloTabla = (DefaultTableModel) t_MesMonto.getModel();
-        int Filas = ModeloTabla.getRowCount();
-        for (int i = 1; i <= Filas; i++) {
-            ModeloTabla.removeRow(0);
-        }
-
-        Persona temp = (Persona) cb_Clientes.getSelectedItem();
-
-        if (!Personas.isEmpty()) {
-            for (int i = 0; i < temp.getPagos().size(); i++) {
-                ModeloTabla.addRow(new Object[]{i + 1, temp.getPagos().get(i)});
-            }
-        }
-
-    }//GEN-LAST:event_cb_ClientesItemStateChanged
-
-    private void t_MesMontoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_MesMontoMouseClicked
-        // TODO add your handling code here:
-        if (evt.isMetaDown()) {
-            ppm_modificar.show(evt.getComponent(), evt.getX(), evt.getY());
-            //t_MesMonto.setComponentPopupMenu(ppm_modificar);
-        }
-    }//GEN-LAST:event_t_MesMontoMouseClicked
-
-    private void PagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagarActionPerformed
-        // TODO add your handling code here:
-        int PagoEfectuado = 0;
-        int MontoAnterior = 0;
-        int Meses = 0;
-        
-        int Fila = t_MesMonto.getSelectedRow();
-        String PagoTemp = JOptionPane.showInputDialog("Cantidad a pagar: ");
-
-        PagoEfectuado = Integer.parseInt(PagoTemp);
-        MontoAnterior = ((Persona) cb_Clientes.getSelectedItem()).getPagos().get(Fila);
-        Meses = ((Persona) cb_Clientes.getSelectedItem()).getMeses();
-
-        if (MontoAnterior == PagoEfectuado) {
-            ((Persona)Personas.get(cb_Clientes.getSelectedIndex())).getPagos().remove(Fila);
-            ((Persona)Personas.get(cb_Clientes.getSelectedIndex())).setMeses(Meses - 1);
-        } else if (PagoEfectuado > MontoAnterior) {
-            JOptionPane.showMessageDialog(this, "El pago excede el monto",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else {
-            ((Persona) cb_Clientes.getSelectedItem()).getPagos().set(Fila, MontoAnterior - PagoEfectuado);
-        }
-        
-        //ACTUALIZAR TABLA
-        DefaultTableModel ModeloTabla = (DefaultTableModel) t_MesMonto.getModel();
-        int Filas = ModeloTabla.getRowCount();
-        for (int i = 1; i <= Filas; i++) {
-            ModeloTabla.removeRow(0);
-        }
-
-        Persona temp = (Persona) cb_Clientes.getSelectedItem();
-
-        if (!Personas.isEmpty()) {
-            for (int i = 0; i < temp.getPagos().size(); i++) {
-                ModeloTabla.addRow(new Object[]{i + 1, temp.getPagos().get(i)});
-            }
-        }
-
-        for (int i = 0; i < Personas.size(); i++) {
-            if ((((Persona) Personas.get(i)).getPagos().isEmpty())) {
-                Personas.remove(i);
-                cb_Clientes.removeAllItems();
-                for (int j = 0; j < Personas.size() - 1; j++) {
-                    cb_Clientes.addItem(Personas.get(j));
-                }
-            }
-        }
-        
-        t_MesMonto.setModel(ModeloTabla);
-        ModeloTabla.fireTableDataChanged();
-    }//GEN-LAST:event_PagarActionPerformed
-
-    private void jd_ReportesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jd_ReportesMouseMoved
-        // TODO add your handling code here:
-        DefaultTableModel ModeloTabla = (DefaultTableModel) t_MesMonto.getModel();
-        int Filas = ModeloTabla.getRowCount();
-        for (int i = 1; i <= Filas; i++) {
-            ModeloTabla.removeRow(0);
-        }
-
-        Persona temp = (Persona) cb_Clientes.getSelectedItem();
-
-        if (!Personas.isEmpty()) {
-            for (int i = 0; i < temp.getPagos().size(); i++) {
-                ModeloTabla.addRow(new Object[]{i + 1, temp.getPagos().get(i)});
-            }
-        }
-
-        for (int i = 0; i < Personas.size(); i++) {
-            if ((((Persona) Personas.get(i)).getPagos().isEmpty())) {
-                Personas.remove(i);
-                cb_Clientes.removeAllItems();
-                for (int j = 0; j < Personas.size() - 1; j++) {
-                    cb_Clientes.addItem(Personas.get(j));
-                }
-            }
-        }
-        
-        t_MesMonto.setModel(ModeloTabla);
-        ModeloTabla.fireTableDataChanged();
-        
-        ap.EscribirArchivo();
-    }//GEN-LAST:event_jd_ReportesMouseMoved
-
-    private void t_MesMontoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_MesMontoMouseMoved
-        // TODO add your handling code here:
-        DefaultTableModel ModeloTabla = (DefaultTableModel) t_MesMonto.getModel();
-        int Filas = ModeloTabla.getRowCount();
-        for (int i = 1; i <= Filas; i++) {
-            ModeloTabla.removeRow(0);
-        }
-
-        Persona temp = (Persona) cb_Clientes.getSelectedItem();
-
-        if (!Personas.isEmpty()) {
-            for (int i = 0; i < temp.getPagos().size(); i++) {
-                ModeloTabla.addRow(new Object[]{i + 1, temp.getPagos().get(i)});
-            }
-        }
-
-        for (int i = 0; i < Personas.size(); i++) {
-            if ((((Persona) Personas.get(i)).getPagos().isEmpty())) {
-                Personas.remove(i);
-                cb_Clientes.removeAllItems();
-                for (int j = 0; j < Personas.size() - 1; j++) {
-                    cb_Clientes.addItem(Personas.get(j));
-                }
-            }
-        }
-        
-        t_MesMonto.setModel(ModeloTabla);
-        ModeloTabla.fireTableDataChanged();
-    }//GEN-LAST:event_t_MesMontoMouseMoved
-
-    private void jd_ReportesWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_ReportesWindowOpened
-        // TODO add your handling code here:
-        DefaultTableModel ModeloTabla = (DefaultTableModel) t_MesMonto.getModel();
-        int Filas = ModeloTabla.getRowCount();
-        for (int i = 1; i <= Filas; i++) {
-            ModeloTabla.removeRow(0);
-        }
-
-        Persona temp = (Persona) cb_Clientes.getSelectedItem();
-
-        if (!Personas.isEmpty()) {
-            for (int i = 0; i < temp.getPagos().size(); i++) {
-                ModeloTabla.addRow(new Object[]{i + 1, temp.getPagos().get(i)});
-            }
-        }
-
-        for (int i = 0; i < Personas.size(); i++) {
-            if ((((Persona) Personas.get(i)).getPagos().isEmpty())) {
-                Personas.remove(i);
-                cb_Clientes.removeAllItems();
-                for (int j = 0; j < Personas.size() - 1; j++) {
-                    cb_Clientes.addItem(Personas.get(j));
-                }
-            }
-        }
-        
-        t_MesMonto.setModel(ModeloTabla);
-        ModeloTabla.fireTableDataChanged();
-    }//GEN-LAST:event_jd_ReportesWindowOpened
+    }//GEN-LAST:event_buttonTask1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -513,24 +350,28 @@ public class Prestamos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner AgregarMeses;
-    private javax.swing.JTextField AgregarMonto;
-    private javax.swing.JTextField AgregarNombre;
-    private javax.swing.JMenuItem Pagar;
-    private javax.swing.JComboBox cb_Clientes;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private org.edisoncor.gui.button.ButtonTask buttonTask1;
+    private org.edisoncor.gui.button.ButtonTask buttonTask2;
+    private org.edisoncor.gui.button.ButtonTask buttonTask3;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JDesktopPane jDesktopPane3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JDialog jd_AgregarPersonas;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JDialog jd_Prestamos;
     private javax.swing.JDialog jd_Reportes;
-    private javax.swing.JPopupMenu ppm_modificar;
-    private javax.swing.JTable t_MesMonto;
+    private com.toedter.calendar.JDateChooser jd_fecha_inicio;
+    private javax.swing.JTextField tf_interes;
+    private javax.swing.JSpinner tf_meses;
+    private javax.swing.JTextField tf_monto;
+    private javax.swing.JTextField tf_nombre_completo;
     // End of variables declaration//GEN-END:variables
-    ArrayList Personas = new ArrayList();
-    Administrar_personas ap = new Administrar_personas("./Clientes.txt");
 }

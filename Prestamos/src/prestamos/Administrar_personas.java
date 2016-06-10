@@ -56,9 +56,10 @@ public class Administrar_personas {
             bw = new BufferedWriter(fw);
 
             for (Persona t : Lista_Personas) {
-                bw.write(t.getNombre() + ";");
+                /*bw.write(t.getNombre() + ";");
                 bw.write(t.getMonto()+ ";");
                 bw.write(t.getMeses()+ ";");
+                bw.write(t.getInteres()+ ";");*/
             }
             bw.flush();
         } catch (Exception e) {
@@ -82,7 +83,7 @@ public class Administrar_personas {
             sc.useDelimiter(";");
 
             while (sc.hasNext()) {
-                Lista_Personas.add(new Persona(sc.next(), sc.nextInt(), sc.nextInt()));
+                /*Lista_Personas.add(new Persona(sc.next(), sc.nextInt(), sc.nextInt(), sc.nextInt()));*/
             }
         } catch (Exception ex) {
         } finally {
