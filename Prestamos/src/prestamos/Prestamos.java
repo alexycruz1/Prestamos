@@ -5,8 +5,14 @@
  */
 package prestamos;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -37,8 +43,19 @@ public class Prestamos extends javax.swing.JFrame {
 
         }
         initComponents();
-        
         setLocationRelativeTo(this);
+        jdc_agregar_fecha.setDate(FechHoy);
+    }
+
+    public static boolean IsDouble(String str) {
+        boolean isDouble = true;
+        try {
+            Double.parseDouble(str);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return isDouble;
     }
 
     /**
@@ -106,19 +123,29 @@ public class Prestamos extends javax.swing.JFrame {
 
         jLabel14.setText("Tasa de interes");
 
+        js_agregar_tiempo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
         jLabel15.setText("Meses");
 
         jLabel16.setText("Lps.");
 
         jLabel17.setText("Tipo de prestamo");
 
+        bg_agregar_tipo_prestamo.add(jrb_agregar_tipo_prestamo_mensual);
+        jrb_agregar_tipo_prestamo_mensual.setSelected(true);
         jrb_agregar_tipo_prestamo_mensual.setText("Mensual");
 
+        bg_agregar_tipo_prestamo.add(jrb_agregar_tipo_prestamo_quincenal);
         jrb_agregar_tipo_prestamo_quincenal.setText("Quincenal");
 
         jLabel18.setText("%");
 
         jButton3.setText("Registrar Cliente");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -204,6 +231,11 @@ public class Prestamos extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Nuevo Prestamo", jPanel1);
 
+        jl_clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_clientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jl_clientes);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -454,6 +486,87 @@ public class Prestamos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_reportesMouseClicked
 
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        boolean CamposLlenos = true;
+        boolean ValorPrestamoNumerico = true;
+        boolean TasaInteresNumerico = true;
+        String RevisarValores = "";
+
+        if ("".equals(jtf_agregar_nombre.getText()) || "".equals(jtf_agregar_valor_prestamo.getText())
+                || "".equals(jtf_agregar_tasa_interes.getText())) {
+            CamposLlenos = false;
+        }
+
+        RevisarValores = jtf_agregar_valor_prestamo.getText();
+        ValorPrestamoNumerico = IsDouble(RevisarValores);
+
+        RevisarValores = jtf_agregar_tasa_interes.getText();
+        TasaInteresNumerico = IsDouble(RevisarValores);
+
+        if (!evt.isMetaDown() && CamposLlenos && ValorPrestamoNumerico && TasaInteresNumerico) {
+            String Nombre, TipoPrestamo = "Mensual", FechaSolicitud;
+            double ValorPrestamo, TasaInteres;
+            int Tiempo;
+            Date FechaTemporal;
+
+            Nombre = jtf_agregar_nombre.getText();
+
+            FechaTemporal = jdc_agregar_fecha.getDate();
+            FechaSolicitud = Formato.format(FechaTemporal);
+
+            ValorPrestamo = Double.parseDouble(jtf_agregar_valor_prestamo.getText());
+            TasaInteres = Double.parseDouble(jtf_agregar_tasa_interes.getText());
+            Tiempo = (int) js_agregar_tiempo.getValue();
+
+            if (jrb_agregar_tipo_prestamo_mensual.isSelected()) {
+                TipoPrestamo = "Mensual";
+            } else if (jrb_agregar_tipo_prestamo_quincenal.isSelected()) {
+                TipoPrestamo = "Quincenal";
+            }
+
+            Cliente NuevoCliente = new Cliente(Nombre, TipoPrestamo, ValorPrestamo, TasaInteres, Tiempo, FechaSolicitud);
+            Clientes.add(NuevoCliente);
+            ModeloLista.clear();
+            
+            for (int i = 0; i < Clientes.size(); i++) {
+                ModeloLista.addElement(Clientes.get(i));
+            }
+            jl_clientes.setModel(ModeloLista);
+            
+            jtf_agregar_nombre.setText("");
+            jrb_agregar_tipo_prestamo_mensual.setSelected(true);
+            jtf_agregar_valor_prestamo.setText("");
+            jtf_agregar_tasa_interes.setText("");
+            js_agregar_tiempo.setValue(1);
+            jdc_agregar_fecha.setDate(FechHoy);
+            
+            JOptionPane.showMessageDialog(jd_Administracion, "Ha registrado un cliente exitosamente",
+                    "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+
+        } else if (!CamposLlenos) {
+            JOptionPane.showMessageDialog(jd_Administracion, "Porfavor llena todos los campos",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else if (!ValorPrestamoNumerico && CamposLlenos) {
+            JOptionPane.showMessageDialog(jd_Administracion, "El valor del prestamo debe ser numerico",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else if (!TasaInteresNumerico && CamposLlenos) {
+            JOptionPane.showMessageDialog(jd_Administracion, "El valor de la tasa de interes debe ser numerico",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jl_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_clientesMouseClicked
+        // TODO add your handling code here:
+        String Nombre;
+        int PosicionCliente;
+        
+        PosicionCliente = jl_clientes.getSelectedIndex();
+        Nombre = Clientes.get(PosicionCliente).getNombre();
+        
+        jtf_mostrar_nombre.setText(Nombre);
+    }//GEN-LAST:event_jl_clientesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -536,4 +649,8 @@ public class Prestamos extends javax.swing.JFrame {
     private javax.swing.JTextField jtf_agregar_valor_prestamo;
     private javax.swing.JTextField jtf_mostrar_nombre;
     // End of variables declaration//GEN-END:variables
+    SimpleDateFormat Formato = new SimpleDateFormat("MM/dd/yyyy");
+    Date FechHoy = new Date();
+    DefaultListModel ModeloLista = new DefaultListModel();
+    ArrayList<Cliente> Clientes = new ArrayList();
 }

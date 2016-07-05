@@ -163,6 +163,11 @@
                 <Component class="javax.swing.JTextField" name="jtf_agregar_nombre">
                 </Component>
                 <Component class="javax.swing.JSpinner" name="js_agregar_tiempo">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
@@ -183,11 +188,18 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="jrb_agregar_tipo_prestamo_mensual">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="bg_agregar_tipo_prestamo"/>
+                    </Property>
+                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Mensual"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="jrb_agregar_tipo_prestamo_quincenal">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="bg_agregar_tipo_prestamo"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Quincenal"/>
                   </Properties>
                 </Component>
@@ -204,6 +216,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Registrar Cliente"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton3MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -312,6 +327,9 @@
                           <StringArray count="0"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jl_clientesMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
