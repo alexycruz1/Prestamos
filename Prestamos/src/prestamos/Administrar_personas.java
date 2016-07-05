@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public class Administrar_personas {
 
-    private ArrayList<Persona> Lista_Personas = new ArrayList();
+    private ArrayList<Cliente> Lista_Personas = new ArrayList();
     private File Archivo = null;
 
     public Administrar_personas(String path) {
@@ -28,11 +28,11 @@ public class Administrar_personas {
         return Archivo;
     }
 
-    public ArrayList<Persona> getLista_Personas() {
+    public ArrayList<Cliente> getLista_Personas() {
         return Lista_Personas;
     }
 
-    public void setLista_Personas(ArrayList<Persona> Lista_Personas) {
+    public void setLista_Personas(ArrayList<Cliente> Lista_Personas) {
         this.Lista_Personas = Lista_Personas;
     }
 
@@ -42,7 +42,7 @@ public class Administrar_personas {
     }
 
     //examinar
-    public void setPersona(Persona p) {
+    public void setPersona(Cliente p) {
         this.Lista_Personas.add(p);
     }
 
@@ -55,7 +55,7 @@ public class Administrar_personas {
             fw = new FileWriter(Archivo, false);
             bw = new BufferedWriter(fw);
 
-            for (Persona t : Lista_Personas) {
+            for (Cliente t : Lista_Personas) {
                 /*bw.write(t.getNombre() + ";");
                 bw.write(t.getMonto()+ ";");
                 bw.write(t.getMeses()+ ";");
@@ -83,7 +83,7 @@ public class Administrar_personas {
             sc.useDelimiter(";");
 
             while (sc.hasNext()) {
-                /*Lista_Personas.add(new Persona(sc.next(), sc.nextInt(), sc.nextInt(), sc.nextInt()));*/
+                /*Lista_Personas.add(new Cliente(sc.next(), sc.nextInt(), sc.nextInt(), sc.nextInt()));*/
             }
         } catch (Exception ex) {
         } finally {
